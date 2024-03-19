@@ -1,5 +1,28 @@
 ﻿using System;
 
+
+/*
+1.Hur fungerar stacken och heapen? Förklara gärna med exempel eller skiss på dess 
+grundläggande funktion
+
+Stacken är självunderhållande där efter stacken kört metoden eller anropen så kastas de bort. Value types kan lagras på stacken.
+
+Heapen är lite av en öppen samling där man kan hämta fritt och inte behöver köra något i ordning som på stacken. 
+För att underhålla heapen används garbage collections. Reference types används alltid på heapen men value types kan även användas
+på heapen beroende på vart de deklareras. 
+
+2. Vad är Value Types respektive Reference Types och vad skiljer dem åt?
+Value types är från System.ValueType och är typen, alltså bool, int, char osv. Dock INTE string. 
+
+Reference types ärver från System.Object och är mer dina byggblock, som class, interface, object, delegate och även string.
+
+3. Följande metoder (se bild nedan) genererar olika svar. Den första returnerar 3, den 
+andra returnerar 4, varför? 
+För att när y = x så är fortfarande värdet av x 3, y tilldelas 4 efter så när return x körs så blir x fortfarande 3. 
+
+I andra exemplaret så pekar x och y på samma objekt. Det är väl skillnaden på heap och stack, då andra exemplaret använder heap :)
+*/
+
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
