@@ -20,7 +20,7 @@ Reference types ärver från System.Object och är mer dina byggblock, som class
 andra returnerar 4, varför? 
 För att när y = x så är fortfarande värdet av x 3, y tilldelas 4 efter så när return x körs så blir x fortfarande 3. 
 
-I andra exemplaret så pekar x och y på samma objekt. Det är väl skillnaden på heap och stack, då andra exemplaret använder heap :)
+I andra exemplaret så pekar x och y på samma objekt. Det är väl skillnaden på heap och stack, då andra exemplaret använder heap
 */
 
 namespace SkalProj_Datastrukturer_Minne
@@ -28,11 +28,24 @@ namespace SkalProj_Datastrukturer_Minne
     class Program
     {
         /// <summary>
-        /// The main method, vill handle the menues for the program
+        /// The main method, will handle the menues for the program
         /// </summary>
         /// <param name="args"></param>
         static void Main()
         {
+            /*
+            1. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek)
+            När storleken når kapaciteten
+            3. Med hur mycket ökar kapaciteten?
+            Dubbelt. 4 > 8 > 16 osv
+            4. Varför ökar inte listans kapacitet i samma takt som element läggs till?
+            Det skulle göra appen/listan för långsam
+            5. Minskar kapaciteten när element tas bort ur listan?
+            Nix
+            6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista
+            För enklare situationer där alla extra funktioner för listor kanske inte behövs osv. 
+
+            */
 
             while (true)
             {
@@ -84,7 +97,59 @@ namespace SkalProj_Datastrukturer_Minne
         /// Examines the datastructure List
         /// </summary>
         static void ExamineList()
-        {
+ {
+        List<string> theList = new List<string>();
+            bool looping = true;
+
+            do
+            {
+                Console.WriteLine("Add or remove names from the list using \"-\" or \"+\". " +
+                    "\nExamples: " +
+                    "\nto add Adam, write \"+Adam\" " +
+                    "\nto remove Adam, write  \"-Adam\" " +
+                    "\npress r to return");
+                string input = Console.ReadLine();
+
+                if (input.Equals("return", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                //Null proofing the menu.
+                if (string.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("Please write a valid command for the menu");
+                    continue;
+                }
+                char nav = input[0];
+                string value = input.Substring(1);
+
+                switch (nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        Console.WriteLine($"Added {value}");
+                        Console.WriteLine($"capacity check: {theList.Capacity}. Count check: {theList.Count}");
+                        break;
+
+                    case '-':
+                        theList.Remove(value);
+                        Console.WriteLine($"Removed {value}");
+                        Console.WriteLine($"capacity check: {theList.Capacity}. Count check: {theList.Count}");
+                        break;
+
+                    case 'r':
+                        Console.WriteLine("Returning..");
+                        looping = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please write a valid command");
+                        break;
+                }
+            } while (looping);
+
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
@@ -95,12 +160,8 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
-
-            //switch(nav){...}
+            
+      
         }
 
         /// <summary>
