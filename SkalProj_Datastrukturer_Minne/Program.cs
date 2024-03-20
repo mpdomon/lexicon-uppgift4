@@ -169,6 +169,46 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
+            bool looping = true; 
+            Queue<string> queue = new Queue<string>();
+
+            do
+            {
+                Console.WriteLine("Menu:" +
+                    "\nPress 1 to add to the queue" +
+                    "\nPress 2 to remove from the queue" +
+                    "\nPress r to return to the previous menu \n");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                        case "1":
+                        Console.WriteLine("Adding..");
+                        string queueAdd = Console.ReadLine();
+                        queue.Enqueue(queueAdd); //Adds the input to the queue
+                        Console.WriteLine($"{queueAdd} has joined the queue.\n");
+                        break;
+                        case "2":
+                        if (queue.Count > 0)
+                        {
+                            string queueRemoved = queue.Dequeue();
+                            Console.WriteLine($"{queueRemoved} has left the queue \n");
+                        } else
+                        {
+                            Console.WriteLine("The queue is empty");
+                        }
+                        break;
+                        case "r":
+                        Console.WriteLine("Returning.. \n");
+                        looping = false;
+                        break;
+                        default:
+                        Console.WriteLine("Write a valid menu input..");
+                        break;
+                }
+
+
+            } while (looping);
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
