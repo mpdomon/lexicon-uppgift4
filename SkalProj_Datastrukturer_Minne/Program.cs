@@ -139,7 +139,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
 
                     case 'r':
-                        Console.WriteLine("Returning..");
+                        Console.WriteLine("Returning.. \n");
                         looping = false;
                         break;
 
@@ -189,9 +189,9 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine($"{queueAdd} has joined the queue.\n");
                         break;
                         case "2":
-                        if (queue.Count > 0)
+                        if (queue.Count > 0) //Runs if the queue isnt empty
                         {
-                            string queueRemoved = queue.Dequeue();
+                            string queueRemoved = queue.Dequeue(); //Removes from the queue
                             Console.WriteLine($"{queueRemoved} has left the queue \n");
                         } else
                         {
@@ -226,6 +226,47 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            Stack<string> stack = new Stack<string>();
+            bool looping = true;
+            do
+            {
+                Console.WriteLine("Menu:\n" +
+                    "Press 1 to add input to the stack\n" +
+                    "Press 2 to remove from the stack\n" +
+                    "Press 3 to reverse input\n" +
+                    "press r to return to the previous menu\n");
+                string input = Console.ReadLine();
+
+                switch (input )
+                {
+                        case "1": //adds to the stack
+                        Console.WriteLine("Adding..");
+                        string stackAdd = Console.ReadLine();
+                        stack.Push(stackAdd); //adds
+                        break;
+
+                        case "2": //Removes from the stack
+                        if (stack.Count > 0) //Runs if the stack isnt empty
+                        {
+                         string popped = stack.Pop(); //According to FIFO removes from the stack
+                            Console.WriteLine($"{popped} has been removed");
+                        } else //if the stack is empty
+                        {
+                            Console.WriteLine("The stack is empty");
+                        }
+                        break;
+
+                        case "3": //reverse input
+                        ReverseText();
+                        break;
+                        case "r":
+                        Console.WriteLine("Returning.. \n");
+                        looping = false;
+                        break;
+
+                }
+
+            } while (looping);
         }
 
         static void CheckParanthesis()
@@ -238,6 +279,19 @@ namespace SkalProj_Datastrukturer_Minne
 
         }
 
+        static void ReverseText()
+        {
+            Console.WriteLine("Enter a string to reverse:");
+            string input = Console.ReadLine();
+
+            Stack<char> reverseStack = new Stack<char>(); //Creates the stack for reverse
+
+            foreach (char c in input) { reverseStack.Push(c); } //Pushes each character of the input onto the stack
+            Console.WriteLine("Reversed string:");
+            while (reverseStack.Count > 0) { Console.Write(reverseStack.Pop());
+        }
+            Console.WriteLine("\n");
     }
+}
 }
 
